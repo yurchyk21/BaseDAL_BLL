@@ -27,8 +27,8 @@ namespace BLL.Concrete
 
             UserAdd userAdd = new UserAdd
             {
-                Name = shopWorker.Name,
-                SurName = shopWorker.SurName,
+                LastName = shopWorker.LastName,
+                FirstName = shopWorker.FirstName,
                 Email = shopWorker.Email
 
 

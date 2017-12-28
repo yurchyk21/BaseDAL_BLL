@@ -28,9 +28,9 @@ namespace DAL.Concrete
             int id=0;
 
             string query = "INSERT INTO Users "+
-           "(Surname,[Name], Email, PasswordSalt,[Password]) "+
+           "(LastName,FirstName, Email, PasswordSalt,[Password]) "+
     " VALUES "+
-          $" ('{userAdd.SurName}', '{userAdd.Name}', '{userAdd.Email}', '{userAdd.PasswordSalt}', '{userAdd.Password}'); ";
+          $" ('{userAdd.LastName}', '{userAdd.FirstName}', '{userAdd.Email}', '{userAdd.PasswordSalt}', '{userAdd.Password}'); ";
             using (SqlCommand command = new SqlCommand(query, _con))
             {
                
@@ -44,27 +44,9 @@ namespace DAL.Concrete
                     {
                         id = int.Parse(reader["UserId"].ToString());
                     }
-
-
                 }
             }
-          
-
-
-
-
             return id;
         }
-
-
-
-
-
-
-
     }
-
-
-
-   
 }

@@ -34,7 +34,7 @@ namespace WpfApp_classwork2712
 
        public MainWindow()
         {
-            string conStr = "Data Source=ALEXANDR;Initial Catalog=ProductDB;Integrated Security=True";
+            string conStr = "Data Source=10.7.0.5;Initial Catalog=Fanya21Products;User ID=test;Password=123456qwerty";
             
             _con = new SqlConnection(conStr);
             _con.Open();
@@ -47,9 +47,9 @@ namespace WpfApp_classwork2712
 
             ShopWorkerAddViewModel shopWorker = new ShopWorkerAddViewModel
             {
-                Name = "shopworkname",
+                FirstName = "shopworkname",
                 Email = "shopworkemail",
-                SurName = "shopworksurname",
+                LastName= "shopworksurname",
                 Password = "123456",
                 IsLocked = true
 
