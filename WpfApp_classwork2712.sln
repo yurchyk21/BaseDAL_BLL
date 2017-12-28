@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.27004.2009
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfApp_classwork2712", "WpfApp_classwork2712\WpfApp_classwork2712.csproj", "{D5D0591D-2839-4321-901C-6FC7B6FAEAB3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{95A3084B-4103-4FAC-8799-F47217785006}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{D5D0591D-2839-4321-901C-6FC7B6FAEAB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D5D0591D-2839-4321-901C-6FC7B6FAEAB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D5D0591D-2839-4321-901C-6FC7B6FAEAB3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95A3084B-4103-4FAC-8799-F47217785006}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95A3084B-4103-4FAC-8799-F47217785006}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95A3084B-4103-4FAC-8799-F47217785006}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95A3084B-4103-4FAC-8799-F47217785006}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

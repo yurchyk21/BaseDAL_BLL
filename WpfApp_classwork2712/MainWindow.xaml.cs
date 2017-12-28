@@ -1,5 +1,7 @@
-﻿using System;
+﻿using DAL.Concrete;
+using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,9 +22,25 @@ namespace WpfApp_classwork2712
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        private readonly RoleRepository _roleRepository;
+
+        private readonly SqlConnection _con;
+
+     
+
+
+       public MainWindow()
         {
+            string conStr = "Data Source=ALEXANDR;Initial Catalog=ProductDB;Integrated Security=True";
+            
+            _con = new SqlConnection(conStr);
+            _con.Open();
+            _roleRepository = new RoleRepository(_con);
+
+
             InitializeComponent();
+            datagrid.ItemsSource = _roleRepository.Roles();
+
         }
     }
 }
