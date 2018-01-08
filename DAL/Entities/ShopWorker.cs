@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace DAL.Entities
 {
-   public  class Role
+   public class ShopWorker
     {
         public int Id { get; set; }
-        public string Name { get; set; }
+        public DateTime HiredDate { get; set; }
+        public bool IsLocked { get; set; }
     }
 }

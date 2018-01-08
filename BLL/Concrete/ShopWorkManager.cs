@@ -36,6 +36,7 @@ namespace BLL.Concrete
             userAdd.PasswordSalt= cryptoService.GenerateSalt();
             userAdd.Password = cryptoService.Compute(shopWorker.Password);
 
+
             return _userRepsitory.Add(userAdd);
         }
     }

@@ -49,6 +49,7 @@
     <Compile Include="Entities\Role.cs" />
     <Compile Include="Entities\Shop.cs" />
     <Compile Include="Entities\ShopProducts.cs" />
+    <Compile Include="Entities\ShopWorker.cs" />
     <Compile Include="Entities\ShopWorkerSeances.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

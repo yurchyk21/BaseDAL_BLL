@@ -8,6 +8,7 @@ namespace DAL.Entities
 {
      public class UserAdd
     {
+        public int Id { get; set; }
 
         public string LastName { get; set; }
 
