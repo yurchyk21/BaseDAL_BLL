@@ -30,27 +30,13 @@ namespace BLL.Concrete
                 LastName = shopWorker.LastName,
                 FirstName = shopWorker.FirstName,
                 Email = shopWorker.Email
-
-
             };
 
             ICryptoService cryptoService = new PBKDF2();
-
-            //New User
-            
-
-            //save this salt to the database
             userAdd.PasswordSalt= cryptoService.GenerateSalt();
-
-            //save this hash to the database
             userAdd.Password = cryptoService.Compute(shopWorker.Password);
 
-            _userRepsitory.Add(userAdd);
-
-            return 0;
+            return _userRepsitory.Add(userAdd);
         }
-
-
-
     }
 }

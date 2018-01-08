@@ -15,29 +15,29 @@ namespace DAL.Concrete
   public  class UserRepsitory
     {
 
-    private readonly SqlConnection _con;
+        private readonly SqlConnection _con;
 
-     public UserRepsitory(SqlConnection con )
+        //ctor
+        public UserRepsitory(SqlConnection con )
       {
             
         _con = con;
      }
 
+        //Add one user
         public int Add (UserAdd userAdd)
         {
             int id=0;
-
-            string query = "INSERT INTO Users "+
-           "(LastName,FirstName, Email, PasswordSalt,[Password]) "+
-    " VALUES "+
-          $" ('{userAdd.LastName}', '{userAdd.FirstName}', '{userAdd.Email}', '{userAdd.PasswordSalt}', '{userAdd.Password}'); ";
+            string query = $"INSERT INTO Users "+
+            $"(LastName,FirstName, Email, PasswordSalt,[Password]) "+
+            $" VALUES "+
+            $" ('{userAdd.LastName}', '{userAdd.FirstName}', '{userAdd.Email}', '{userAdd.PasswordSalt}', '{userAdd.Password}'); ";
             using (SqlCommand command = new SqlCommand(query, _con))
             {
-               
                 int res = command.ExecuteNonQuery();
                 if (res == 1)
                 {
-                    query = "SELECT SCOPE_IDENTITY() as UserId";
+                    query = $"SELECT SCOPE_IDENTITY() as UserId";
                     command.CommandText = query;
                    var reader = command.ExecuteReader();
                     if(reader.Read())

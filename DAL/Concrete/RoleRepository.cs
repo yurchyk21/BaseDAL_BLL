@@ -12,12 +12,13 @@ namespace DAL.Concrete
     {
         private readonly SqlConnection _con;
 
+        //ctor
         public RoleRepository(SqlConnection con)
         {
             _con = con;
         }
 
-
+        //Return all Roles
         public List<Role> Roles ()
         {
 
@@ -37,7 +38,6 @@ namespace DAL.Concrete
                             role.Id = int.Parse(reader["Id"].ToString());
                             role.Name = reader["Name"].ToString();
                             roles.Add(role);
-
                         }
                     }
                 }
@@ -52,6 +52,27 @@ namespace DAL.Concrete
 
         }
 
+        //Add one Role in the Base
+        public int Add(string role)
+        {
+            int id = 0;
+            string query = $"INSERT INTO dbo.Roles ([Name]) VALUES ('role');";
+            using (SqlCommand command = new SqlCommand(query, _con))
+            {
+                int res = command.ExecuteNonQuery();
+                if (res == 1)
+                {
+                    query = $"SELECT SCOPE_IDENTITY() as Id";
+                    command.CommandText = query;
+                    var reader = command.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        id = int.Parse(reader["Id"].ToString());
+                    }
+                }
+            }
+            return id;
+        }
 
 
     }

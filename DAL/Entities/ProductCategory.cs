@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace DAL.Entities
 {
-   public  class Role
+    public class ProductCategory
     {
         public int Id { get; }
         public string Name { get; set; }
+
     }
 }

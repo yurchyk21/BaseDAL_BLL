@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 
 namespace DAL.Entities
 {
-   public  class Role
+    public class City
     {
         public int Id { get; }
+        public int CountryId { get; set; }
         public string Name { get; set; }
+
     }
 }

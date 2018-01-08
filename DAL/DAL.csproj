@@ -42,7 +42,14 @@
   <ItemGroup>
     <Compile Include="Concrete\RoleRepository.cs" />
     <Compile Include="Concrete\UserRepsitory.cs" />
+    <Compile Include="Entities\City.cs" />
+    <Compile Include="Entities\Country.cs" />
+    <Compile Include="Entities\Product.cs" />
+    <Compile Include="Entities\ProductCategory.cs" />
     <Compile Include="Entities\Role.cs" />
+    <Compile Include="Entities\Shop.cs" />
+    <Compile Include="Entities\ShopProducts.cs" />
+    <Compile Include="Entities\ShopWorkerSeances.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
