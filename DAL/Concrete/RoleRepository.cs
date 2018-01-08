@@ -52,22 +52,37 @@ namespace DAL.Concrete
 
         }
 
-        //Add one Role in the Base
-        public int Add(string role)
+        //Find a
+        public int Find(string role)
         {
-            int id = 0;
-            string query = $"INSERT INTO dbo.Roles ([Name]) VALUES ('role');";
+
+            string query = $"SELECT Id INTO dbo.Roles WHERE [Name]={role};";
             using (SqlCommand command = new SqlCommand(query, _con))
             {
-                int res = command.ExecuteNonQuery();
-                if (res == 1)
+                return command.ExecuteNonQuery();
+            }
+
+        }
+
+            //Add one Role in the Base
+            public int Add(string role)
+        {
+            int id = 0;
+            if (Find(role) != 0)
+            {
+                string query = $"INSERT INTO dbo.Roles ([Name]) VALUES ('role');";
+                using (SqlCommand command = new SqlCommand(query, _con))
                 {
-                    query = $"SELECT SCOPE_IDENTITY() as Id";
-                    command.CommandText = query;
-                    var reader = command.ExecuteReader();
-                    if (reader.Read())
+                    int res = command.ExecuteNonQuery();
+                    if (res == 1)
                     {
-                        id = int.Parse(reader["Id"].ToString());
+                        query = $"SELECT SCOPE_IDENTITY() as Id";
+                        command.CommandText = query;
+                        var reader = command.ExecuteReader();
+                        if (reader.Read())
+                        {
+                            id = int.Parse(reader["Id"].ToString());
+                        }
                     }
                 }
             }

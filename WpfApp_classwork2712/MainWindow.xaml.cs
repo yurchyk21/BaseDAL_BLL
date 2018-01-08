@@ -1,8 +1,8 @@
 ﻿using BLL.Concrete;
 using BLL.ViewModels;
-//using DAL.Concrete;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -26,20 +26,15 @@ namespace WpfApp_classwork2712
     {
        // private readonly RoleRepository _roleRepository;
 
-        private readonly SqlConnection _con;
+        private readonly SqlConnection _con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
+        private ShopWorkManager _shopWorkManager;
+        private RoleManager _roleManager;
 
-
-        private ShopWorkManager _sopWorkManager;
-
-
-       public MainWindow()
+        public MainWindow()
         {
-            string conStr = "Data Source=10.7.0.5;Initial Catalog=Fanya21Products;User ID=test;Password=123456qwerty";
-            
-            _con = new SqlConnection(conStr);
             _con.Open();
-            //  _roleRepository = new RoleRepository(_con);
-            _sopWorkManager = new ShopWorkManager(_con);
+            _roleManager = new RoleManager(_con);
+            _shopWorkManager = new ShopWorkManager(_con);
 
             InitializeComponent();
             //  datagrid.ItemsSource = _roleRepository.Roles();
@@ -55,8 +50,14 @@ namespace WpfApp_classwork2712
 
 
             };
-            _sopWorkManager.Add(shopWorker);
+            _shopWorkManager.Add(shopWorker);
 
+        }
+
+        private void AddRoleBtn_Click(object sender, RoutedEventArgs e)
+        {
+            AddRole _windowAddRole = new AddRole(_roleManager);
+            _windowAddRole.Show();
         }
     }
 }
