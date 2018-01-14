@@ -16,12 +16,14 @@ namespace BLL.Concrete
     {
         private readonly SqlConnection _con;
         private readonly UserRepsitory _userRepsitory;
+        private readonly ShopWorkerRepository _shopWorkerRepository;
         
 
         public ShopWorkManager(SqlConnection con)
         {
             _con = con;
             _userRepsitory = new UserRepsitory(_con);
+            _shopWorkerRepository = new ShopWorkerRepository(_con);
         }
 
         public int Add(ShopWorkerAddViewModel shopWorker)
@@ -48,6 +50,19 @@ namespace BLL.Concrete
         public void Delete(object userAdd)
         {
             _userRepsitory.Delete(userAdd as UserAdd);
+            _shopWorkerRepository.Delete((userAdd as UserAdd).Id);
+        }
+        public void SetWorker(object userAdd, DateTime hiredDate, bool isLocked)
+        {
+            _shopWorkerRepository.Add(userAdd as UserAdd, hiredDate, isLocked);
+        }
+        public void LockChanger(object worker)
+        {
+            _shopWorkerRepository.LockUnlock(worker as ShopWorker);
+        }
+        public ObservableCollection<ShopWorker> Workers
+        {
+            get { return _shopWorkerRepository.Workers(); }
         }
 
     }
