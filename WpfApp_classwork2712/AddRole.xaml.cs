@@ -35,13 +35,17 @@ namespace WpfApp_classwork2712
         private void AddNewRoleBtn_Click(object sender, RoutedEventArgs e)
         {
             if (!string.IsNullOrEmpty(RoleNameTxtBox.Text))
+            {
                 if (_roleManager.Add(RoleNameTxtBox.Text) == 0)
                 {
                     MessageBox.Show("Role exists", "Role exists", MessageBoxButton.OK);
                 }
                 else
+                {
                     MessageBox.Show("Role added successfull", "Role added", MessageBoxButton.OK);
-
+                }
+                this.Close();
+            }
             else
                 MessageBox.Show("Wrong text in field", "Error", MessageBoxButton.OK);
 

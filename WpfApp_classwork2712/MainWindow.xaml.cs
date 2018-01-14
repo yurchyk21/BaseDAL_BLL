@@ -16,6 +16,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Collections.ObjectModel;
 
 namespace WpfApp_classwork2712
 {
@@ -37,27 +38,30 @@ namespace WpfApp_classwork2712
             _shopWorkManager = new ShopWorkManager(_con);
 
             InitializeComponent();
-            //  datagrid.ItemsSource = _roleRepository.Roles();
-
-
-            ShopWorkerAddViewModel shopWorker = new ShopWorkerAddViewModel
-            {
-                FirstName = "shopworkname",
-                Email = "shopworkemail",
-                LastName= "shopworksurname",
-                Password = "123456",
-                IsLocked = true
-
-
-            };
-            _shopWorkManager.Add(shopWorker);
-
+            datagrid.ItemsSource = _shopWorkManager.Users;
+            datagrid.AutoGenerateColumns = false;
         }
 
         private void AddRoleBtn_Click(object sender, RoutedEventArgs e)
         {
             AddRole _windowAddRole = new AddRole(_roleManager);
             _windowAddRole.Show();
+        }
+
+        private void AddUserBtn_Click(object sender, RoutedEventArgs e)
+        {
+            AddUser _windowAddUser = new AddUser(_shopWorkManager);
+            _windowAddUser.Show();
+        }
+
+        private void DelUserBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (datagrid.SelectedIndex != 0) {
+                foreach(var user in datagrid.SelectedItems)
+                {
+                    _shopWorkManager.Delete(user);
+                }
+                    }
         }
     }
 }

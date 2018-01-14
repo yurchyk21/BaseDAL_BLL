@@ -1,6 +1,7 @@
 ﻿using DAL.Entities;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -19,10 +20,9 @@ namespace DAL.Concrete
         }
 
         //Return all Roles
-        public List<Role> Roles ()
+        public ObservableCollection <Role> Roles ()
         {
-
-            List<Role> roles = new List<Role>();
+            ObservableCollection<Role> roles = new ObservableCollection<Role>();
 
             string query = "SELECT r.Id, r.Name FROM Roles as r";
             try
@@ -34,9 +34,11 @@ namespace DAL.Concrete
                     {
                         while (reader.Read())
                         {
-                            var role = new Role();
-                            role.Id = int.Parse(reader["Id"].ToString());
-                            role.Name = reader["Name"].ToString();
+                            var role = new Role
+                            {
+                                Id = int.Parse(reader["Id"].ToString()),
+                                Name = reader["Name"].ToString()
+                            };
                             roles.Add(role);
                         }
                     }
@@ -55,8 +57,7 @@ namespace DAL.Concrete
         //Find a
         public int Find(string role)
         {
-
-            string query = $"SELECT Id INTO dbo.Roles WHERE [Name]={role};";
+            string query = $"SELECT Id FROM dbo.Roles WHERE [Name]='{role.ToLower()}';";
             using (SqlCommand command = new SqlCommand(query, _con))
             {
                 return command.ExecuteNonQuery();
@@ -68,9 +69,9 @@ namespace DAL.Concrete
             public int Add(string role)
         {
             int id = 0;
-            if (Find(role) != 0)
+            if (/*Find(role) != 0*/true)
             {
-                string query = $"INSERT INTO dbo.Roles ([Name]) VALUES ('role');";
+                string query = $"INSERT INTO Roles (Name) VALUES ('{role.ToLower()}');";
                 using (SqlCommand command = new SqlCommand(query, _con))
                 {
                     int res = command.ExecuteNonQuery();

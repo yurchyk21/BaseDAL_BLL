@@ -4,6 +4,7 @@ using DAL.Entities;
 using SimpleCrypto;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,7 @@ namespace BLL.Concrete
     {
         private readonly SqlConnection _con;
         private readonly UserRepsitory _userRepsitory;
+        
 
         public ShopWorkManager(SqlConnection con)
         {
@@ -39,5 +41,14 @@ namespace BLL.Concrete
 
             return _userRepsitory.Add(userAdd);
         }
+        public ObservableCollection<UserAdd> Users
+        {
+            get { return _userRepsitory.Users(); }
+        }
+        public void Delete(object userAdd)
+        {
+            _userRepsitory.Delete(userAdd as UserAdd);
+        }
+
     }
 }

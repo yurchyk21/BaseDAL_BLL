@@ -2,6 +2,7 @@
 using DAL.Entities;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -24,6 +25,10 @@ namespace BLL.Concrete
         {
 
             return _roleRepsitory.Add(roleName);
+        }
+        public ObservableCollection <Role> Roles
+        {
+            get { return _roleRepsitory.Roles();}
         }
 
     }
